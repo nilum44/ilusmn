@@ -12,7 +12,7 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    background: radial-gradient(circle at top, #b3002d, #5c0000);
+    background: linear-gradient(180deg, #b11226, #e63946);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,63 +24,62 @@ body {
 .love-box {
     position: relative;
     z-index: 2;
-    background: rgba(255, 0, 50, 0.18);
-    backdrop-filter: blur(18px);
-    border-radius: 28px;
-    padding: 45px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    border-radius: 26px;
+    padding: 42px;
     max-width: 650px;
     text-align: center;
-    box-shadow: 0 35px 70px rgba(0,0,0,0.55);
-    animation: fade 2s ease;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+    animation: fade 1.8s ease;
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    margin-bottom: 10px;
+    font-size: 2.6rem;
+    margin-bottom: 8px;
 }
 
 h2 {
     font-weight: 300;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-size: 1.15rem;
+    margin-bottom: 28px;
     opacity: 0.95;
 }
 
 p {
-    font-size: 1.1rem;
-    line-height: 1.9;
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 .heart-center {
-    font-size: 3.6rem;
-    animation: pulse 1.4s infinite;
-    margin: 25px 0;
+    font-size: 3.4rem;
+    animation: pulse 1.5s infinite;
+    margin: 22px 0;
 }
 
 button {
-    background: #fff;
-    color: #8b0022;
+    background: #ffffff;
+    color: #b11226;
     border: none;
     border-radius: 30px;
-    padding: 14px 35px;
+    padding: 13px 34px;
     font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(255,255,255,0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(255,255,255,0.5);
 }
 
 /* Floating hearts */
 .floating-heart {
     position: absolute;
     bottom: -20px;
-    color: #ffb3c1;
+    color: rgba(255,255,255,0.7);
     animation: floatUp linear infinite;
-    opacity: 0.85;
     pointer-events: none;
 }
 
@@ -94,8 +93,8 @@ button:hover {
 
 /* Animations */
 @keyframes floatUp {
-    0% { transform: translateY(0) scale(0.8); }
-    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    from { transform: translateY(0) scale(0.8); opacity: 1; }
+    to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
 }
 
 @keyframes pulse {
@@ -104,19 +103,13 @@ button:hover {
 }
 
 @keyframes fade {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(35px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes burst {
-    0% {
-        transform: translate(0,0) scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) scale(1.6);
-        opacity: 0;
-    }
+    from { transform: translate(0,0) scale(0.8); opacity: 1; }
+    to { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
 }
 </style>
 </head>
@@ -145,36 +138,33 @@ function createFloatingHeart() {
     heart.className = "floating-heart";
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (16 + Math.random() * 24) + "px";
+    heart.style.fontSize = (14 + Math.random() * 22) + "px";
     heart.style.animationDuration = (4 + Math.random() * 4) + "s";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 8000);
 }
-setInterval(createFloatingHeart, 350);
+setInterval(createFloatingHeart, 380);
 
-// Heart burst on button click
+// Heart burst
 function heartBurst(e) {
-    const button = e.target;
-    const rect = button.getBoundingClientRect();
+    const btn = e.target;
+    const rect = btn.getBoundingClientRect();
 
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 16; i++) {
         const heart = document.createElement("div");
         heart.className = "burst-heart";
         heart.innerHTML = "❤️";
 
-        const x = (Math.random() - 0.5) * 200 + "px";
-        const y = (Math.random() - 0.5) * 200 + "px";
-
         heart.style.left = rect.width / 2 + "px";
         heart.style.top = rect.height / 2 + "px";
-        heart.style.setProperty("--x", x);
-        heart.style.setProperty("--y", y);
+        heart.style.setProperty("--x", (Math.random()-0.5)*180 + "px");
+        heart.style.setProperty("--y", (Math.random()-0.5)*180 + "px");
 
-        button.appendChild(heart);
+        btn.appendChild(heart);
         setTimeout(() => heart.remove(), 1000);
     }
 
-    alert("No election result can ever take you away from my heart. I'm yours — in every rise and every fall. ❤️");
+    alert("No election result can ever take you away from my heart. I’m yours in every rise and every fall ❤️");
 }
 </script>
 
