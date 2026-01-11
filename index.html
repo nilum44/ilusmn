@@ -12,7 +12,7 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(135deg, #7a0000, #c4002f);
+    background: radial-gradient(circle at top, #b3002d, #5c0000);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,29 +20,31 @@ body {
     color: #fff;
 }
 
+/* Front card */
 .love-box {
     position: relative;
     z-index: 2;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
-    border-radius: 25px;
+    background: rgba(255, 0, 50, 0.18);
+    backdrop-filter: blur(18px);
+    border-radius: 28px;
     padding: 45px;
     max-width: 650px;
     text-align: center;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 35px 70px rgba(0,0,0,0.55);
     animation: fade 2s ease;
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2.8rem;
+    margin-bottom: 10px;
 }
 
 h2 {
     font-weight: 300;
     font-size: 1.2rem;
     margin-bottom: 30px;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 p {
@@ -51,40 +53,38 @@ p {
 }
 
 .heart-center {
-    font-size: 3.5rem;
+    font-size: 3.6rem;
     animation: pulse 1.4s infinite;
     margin: 25px 0;
 }
 
 button {
-    position: relative;
     background: #fff;
-    color: #b3002d;
+    color: #8b0022;
     border: none;
     border-radius: 30px;
     padding: 14px 35px;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
-    overflow: hidden;
 }
 
 button:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(255,255,255,0.5);
+    box-shadow: 0 12px 28px rgba(255,255,255,0.6);
 }
 
-/* Floating background hearts */
+/* Floating hearts */
 .floating-heart {
     position: absolute;
     bottom: -20px;
-    color: #ffccd5;
+    color: #ffb3c1;
     animation: floatUp linear infinite;
-    opacity: 0.8;
+    opacity: 0.85;
     pointer-events: none;
 }
 
-/* Heart burst */
+/* Burst hearts */
 .burst-heart {
     position: absolute;
     font-size: 18px;
@@ -92,17 +92,7 @@ button:hover {
     animation: burst 1s ease-out forwards;
 }
 
-@keyframes burst {
-    0% {
-        transform: translate(0,0) scale(0.8);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) scale(1.6);
-        opacity: 0;
-    }
-}
-
+/* Animations */
 @keyframes floatUp {
     0% { transform: translateY(0) scale(0.8); }
     100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
@@ -116,6 +106,17 @@ button:hover {
 @keyframes fade {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes burst {
+    0% {
+        transform: translate(0,0) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(1.6);
+        opacity: 0;
+    }
 }
 </style>
 </head>
@@ -146,7 +147,6 @@ function createFloatingHeart() {
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = (16 + Math.random() * 24) + "px";
     heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 8000);
 }
@@ -174,7 +174,7 @@ function heartBurst(e) {
         setTimeout(() => heart.remove(), 1000);
     }
 
-    alert("No  election result can ever take you away frm my heart.I'm yours-in every rise and every fall.❤️");
+    alert("No election result can ever take you away from my heart. I'm yours — in every rise and every fall. ❤️");
 }
 </script>
 
