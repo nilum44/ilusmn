@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>With You, Always</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #7a0000, #c4002f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+.love-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 45px;
+    max-width: 650px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    animation: fade 2s ease;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.heart-center {
+    font-size: 3.5rem;
+    animation: pulse 1.4s infinite;
+    margin: 25px 0;
+}
+
+button {
+    position: relative;
+    background: #fff;
+    color: #b3002d;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 35px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(255,255,255,0.5);
+}
+
+/* Floating background hearts */
+.floating-heart {
+    position: absolute;
+    bottom: -20px;
+    color: #ffccd5;
+    animation: floatUp linear infinite;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Heart burst */
+.burst-heart {
+    position: absolute;
+    font-size: 18px;
+    pointer-events: none;
+    animation: burst 1s ease-out forwards;
+}
+
+@keyframes burst {
+    0% {
+        transform: translate(0,0) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(1.6);
+        opacity: 0;
+    }
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(0.8); }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
+
+@keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="love-box">
+    <h1>My Nobi 💕</h1>
+    <h2>This loss doesn’t change how I see you</h2>
+
+    <p>I know today your heart feels heavy, but remember this…</p>
+
+    <p>I don’t love you for your wins. I love you for who you are.</p>
+
+    <div class="heart-center">❤️</div>
+
+    <p><strong>I will always stand by your side.</strong></p>
+
+    <button onclick="heartBurst(event)">Open My Heart 💌</button>
+</div>
+
+<script>
+// Floating background hearts
+function createFloatingHeart() {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 24) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+}
+setInterval(createFloatingHeart, 350);
+
+// Heart burst on button click
+function heartBurst(e) {
+    const button = e.target;
+    const rect = button.getBoundingClientRect();
+
+    for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+        heart.className = "burst-heart";
+        heart.innerHTML = "❤️";
+
+        const x = (Math.random() - 0.5) * 200 + "px";
+        const y = (Math.random() - 0.5) * 200 + "px";
+
+        heart.style.left = rect.width / 2 + "px";
+        heart.style.top = rect.height / 2 + "px";
+        heart.style.setProperty("--x", x);
+        heart.style.setProperty("--y", y);
+
+        button.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    }
+
+    alert("No  election result can ever take you away frm my heart.I'm yours-in every rise and every fall.❤️");
+}
+</script>
+
+</body>
+</html>
